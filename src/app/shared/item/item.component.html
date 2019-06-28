@@ -1,0 +1,14 @@
+<li *ngFor="let item of todos">
+    <p class="{{item.status ? 'done' : ''}}">{{item.title}}</p>
+    <input *ngIf="editMode.status && editMode.id == item.id" type="text"
+    [(ngModel)]="name">
+
+    <button *ngIf="!editMode.status && !item.status" (click)="done(item.id,true)">done</button>
+    <button *ngIf="item.status" (click)="done(item.id,flase)">undone</button>
+
+    <button *ngIf="!editMode.status" (click)="editModeOn(item.id,name)">edit</button>
+    <button *ngIf="editMode.status && editMode.id == item.id" (click)="update(item.id,name)">update</button>
+    <button *ngIf="editMode.status && editMode.id == item.id" (click)="cancel()">cancel</button>
+
+    <button *ngIf="!editMode.status" (click)="delete(item.id)">delete</button>
+</li>
